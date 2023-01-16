@@ -7,6 +7,9 @@ Example iPXE boot URLs;
 `http://foreman.example.com/unattended/iPXE?uuid=${uuid}`  
 `http://template-proxy.example.com:8000/unattended/iPXE?mac=${netX/mac}&uuid=${uuid}`
 
+### TODO:
+
+- Support booting machines in build mode (facts are wiped when machines are in build)
 
 ## Installation
 

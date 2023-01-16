@@ -15,6 +15,8 @@ module ForemanUuidBoot
       return unless (uuid = query_params['uuid'])
 
       fact_name_id = FactName.where(name: 'uuid').map(&:id)
+      return unless fact_name_id.any?
+
       query = { fact_values: { fact_name_id: fact_name_id, value: uuid } }
       hosts = Host.joins(:fact_values).where(query).order(:created_at)
 

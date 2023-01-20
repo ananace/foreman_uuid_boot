@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/ananace/foreman_uuid_boot'
   spec.license       = 'GPL-3.0'
 
-  spec.files         = Dir['{app,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt Rakefile README.md]
+  spec.files         = Dir['{app,db,lib}/**/*.{rake,rb}'] + %w[LICENSE.txt Rakefile README.md]
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 

@@ -7,10 +7,6 @@ Example iPXE boot URLs;
 `http://foreman.example.com/unattended/iPXE?uuid=${uuid}`  
 `http://template-proxy.example.com:8000/unattended/iPXE?mac=${netX/mac}&uuid=${uuid}`
 
-### TODO:
-
-- Support booting machines in build mode (facts are wiped when machines are in build)
-
 ## Installation
 
 See the [Plugins install instructions, advanced installation from gems](https://theforeman.org/plugins/#2.3AdvancedInstallationfromGems) for information on how to install this plugins.

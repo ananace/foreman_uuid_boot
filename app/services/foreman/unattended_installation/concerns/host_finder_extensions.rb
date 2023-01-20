@@ -13,6 +13,14 @@ module HostFinderExtensions
   def find_host_by_uuid
     return unless (uuid = query_params['uuid'])
 
+    facet = ForemanUuidBoot::UuidbootHostFacet.where(uuid: uuid).order(:created_at)
+    if facet.any?
+      Rails.logger.warn("Multiple hosts found with #{uuid}, picking up the most recent") if facet.count > 1
+
+      return facet.last.host.reload
+    end
+
+    # Fallback fact search
     fact_name_id = FactName.where(name: 'uuid').map(&:id)
     return unless fact_name_id.any?
 

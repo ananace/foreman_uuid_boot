@@ -17,7 +17,7 @@ Also works with `http://foreman.example.com/unattended/iPXE?bootstrap=true` afte
 
 See the [Plugins install instructions, advanced installation from gems](https://theforeman.org/plugins/#2.3AdvancedInstallationfromGems) for information on how to install this plugins.
 
-To enable legacy fact searching in addition to the UUID boot facet, create a plugin configuration file under `/etc/foreman/plugins` with;
+To enable the slower fact searching in addition to the UUID boot facet, create a plugin configuration file under `/etc/foreman/plugins` with;
 ```yaml
 ---
 :uuidboot_factsearch: true

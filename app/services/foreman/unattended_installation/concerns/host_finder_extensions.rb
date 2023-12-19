@@ -15,10 +15,12 @@ module HostFinderExtensions
 
     facets = ForemanUuidBoot::UuidbootHostFacet.where(uuid: uuid).order(:created_at)
     if facets.any?
-      Rails.logger.warn("Multiple hosts found with #{uuid}, picking up the most recent") if facets.count > 1
+      Rails.logger.warn("Multiple hosts found with #{uuid}, choosing the most recent") if facets.count > 1
 
       return facets.last.host.reload
     end
+
+    return unless SETTINGS[:uuidboot_factsearch]
 
     # Fallback fact search
     fact_name_id = FactName.where(name: 'uuid').map(&:id)
@@ -27,7 +29,7 @@ module HostFinderExtensions
     query = { fact_values: { fact_name_id: fact_name_id, value: uuid } }
     hosts = Host.joins(:fact_values).where(query).order(:created_at)
 
-    Rails.logger.warn("Multiple hosts found with #{uuid}, picking up the most recent") if hosts.count > 1
+    Rails.logger.warn("Multiple hosts found with #{uuid}, choosing the most recent") if hosts.count > 1
 
     return unless hosts.present?
 

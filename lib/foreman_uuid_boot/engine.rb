@@ -13,13 +13,15 @@ module ForemanUuidBoot
       end
     end
 
-    initializer 'foreman_uuid_boot.register_plugin', before: :finisher_hook do |_app|
-      Foreman::Plugin.register :foreman_uuid_boot do
-        requires_foreman '>= 2.5'
+    initializer 'foreman_uuid_boot.register_plugin', before: :finisher_hook do |app|
+      app.reloader.to_prepare do
+        Foreman::Plugin.register :foreman_uuid_boot do
+          requires_foreman '>= 3.12'
 
-        register_facet ForemanUuidBoot::UuidbootHostFacet, :uuidboot_facet do
-          configure_host do
-            set_dependent_action :destroy
+          register_facet ForemanUuidBoot::UuidbootHostFacet, :uuidboot_facet do
+            configure_host do
+              set_dependent_action :destroy
+            end
           end
         end
       end
